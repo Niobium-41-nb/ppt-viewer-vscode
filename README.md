@@ -1,71 +1,35 @@
-# ppt--- README
+# PPT浏览器 VS Code 插件
 
-This is the README for your extension "ppt---". After writing up a brief description, we recommend including the following sections.
+本插件允许你在 VS Code 内部直接浏览 PPT（.pptx）文件，无需离开编辑器。
 
-## Features
+## 功能特性
+- 通过命令面板一键选择并预览本地 PPTX 文件
+- 支持 PPTX 幻灯片内容的解析与渲染（基于 jszip + pptxjs）
+- 支持幻灯片切换（pptxjs 内置）
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## 安装方法
+1. 克隆本仓库：
+   ```sh
+   git clone https://github.com/Niobium-41-nb/ppt-viewer-vscode.git
+   ```
+2. 在 VS Code 中打开本项目文件夹。
+3. 运行 `npm install` 安装依赖。
+4. 按 F5 启动扩展开发主机进行调试。
 
-For example if there is an image subfolder under your extension project workspace:
+## 使用方法
+1. 在 VS Code 命令面板（Ctrl+Shift+P）输入并选择“浏览PPT文件”。
+2. 选择本地的 .pptx 文件。
+3. 即可在 Webview 面板中浏览 PPT 内容。
 
-\!\[feature X\]\(images/feature-x.png\)
+## 效果预览
+（可自行添加截图）
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## 技术实现
+- Webview 内集成 [jszip](https://stuk.github.io/jszip/) 和 [pptxjs](https://gitbrent.github.io/PptxGenJS/) 实现 PPTX 文件解析与渲染。
+- 纯本地预览，无需上传文件。
 
-## Requirements
+## 贡献
+欢迎 issue、PR 和建议！
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+## 许可协议
+MIT License
