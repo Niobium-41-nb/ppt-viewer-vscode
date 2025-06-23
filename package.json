@@ -9,9 +9,6 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:ppt---.browsePPT"
-  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [

@@ -85,6 +85,6 @@ PPT浏览器是一款 VS Code 扩展插件，允许你在 VS Code 内部直接�
 
 ---
 
-## 许可协议
+## 许可证
 
-MIT License
+本项目采用 [MIT License](LICENSE) 开源协议，欢迎自由使用和二次开发。
