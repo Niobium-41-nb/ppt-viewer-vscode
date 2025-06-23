@@ -5,6 +5,16 @@ import * as path from 'path';
 export function activate(context: vscode.ExtensionContext) {
 	console.log('PPT浏览器扩展已激活');
 
+	// 注册 .pptx 文件的自定义编辑器
+	context.subscriptions.push(
+		vscode.window.registerCustomEditorProvider(
+			'ppt-viewer-vscode.pptxViewer',
+			new PPTXCustomEditorProvider(),
+			{ supportsMultipleEditorsPerDocument: false }
+		)
+	);
+
+	// 保留命令方式，兼容老用户
 	const disposable = vscode.commands.registerCommand('ppt---.browsePPT', async () => {
 		const fileUri = await vscode.window.showOpenDialog({
 			canSelectMany: false,
@@ -14,20 +24,28 @@ export function activate(context: vscode.ExtensionContext) {
 		if (!fileUri || fileUri.length === 0) {
 			return;
 		}
-
-		const pptxPath = fileUri[0].fsPath;
-		const panel = vscode.window.createWebviewPanel(
-			'pptViewer',
-			'PPT浏览器',
-			vscode.ViewColumn.One,
-			{ enableScripts: true, localResourceRoots: [vscode.Uri.file(path.dirname(pptxPath))] }
-		);
-
-		const pptxData = fs.readFileSync(pptxPath).toString('base64');
-		panel.webview.html = getWebviewContent(pptxData);
+		vscode.commands.executeCommand('vscode.openWith', fileUri[0], 'ppt-viewer-vscode.pptxViewer');
 	});
-
 	context.subscriptions.push(disposable);
+}
+
+class PPTXCustomEditorProvider implements vscode.CustomReadonlyEditorProvider {
+	async openCustomDocument(uri: vscode.Uri): Promise<vscode.CustomDocument> {
+		return { uri, dispose: () => {} };
+	}
+
+	async resolveCustomEditor(
+		document: vscode.CustomDocument,
+		webviewPanel: vscode.WebviewPanel
+	): Promise<void> {
+		const pptxPath = document.uri.fsPath;
+		const pptxData = fs.readFileSync(pptxPath).toString('base64');
+		webviewPanel.webview.options = {
+			enableScripts: true,
+			localResourceRoots: [vscode.Uri.file(path.dirname(pptxPath))]
+		};
+		webviewPanel.webview.html = getWebviewContent(pptxData);
+	}
 }
 
 function getWebviewContent(pptxBase64: string): string {

@@ -23,6 +23,15 @@
         "command": "ppt---.helloWorld",
         "title": "Hello World"
       }
+    ],
+    "customEditors": [
+      {
+        "viewType": "ppt-viewer-vscode.pptxViewer",
+        "displayName": "PPT浏览器（只读）",
+        "selector": [
+          { "filenamePattern": "*.pptx" }
+        ]
+      }
     ]
   },
   "scripts": {
@@ -43,5 +52,9 @@
     "typescript": "^5.8.3",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.5.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Niobium-41-nb/ppt-viewer-vscode.git"
   }
 }
